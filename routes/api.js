@@ -16,16 +16,19 @@ router.route('/productions/twitters').get(function(req, res) {
     Production.model.find().where('twitter').ne(null).exec(function(err, docs) {
         if (err) res.send(err);
 
-        var handles = docs.map(function(doc) {
-        	return doc.twitter.replace('https://twitter.com/', '');
-        });
-
-        res.json(_.uniq(handles));
+        res.json(_.uniq(docs));
     });
 });
 
 router.route('/productions/twitter/:handle').get(function(req, res) {
-    Production.model.find().where('twitter', req.param.handle).exec(function(err, docs) {
+    Production.model.find().where('twitter', req.params.handle).exec(function(err, docs) {
+        if (err) res.send(err);
+        res.json(docs);
+    });
+});
+
+router.route('/production/:id').get(function(req, res) {
+    Production.model.findById(req.params.id).exec(function(err, docs) {
         if (err) res.send(err);
         res.json(docs);
     });
