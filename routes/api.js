@@ -16,7 +16,11 @@ router.route('/productions/twitters').get(function(req, res) {
     Production.model.find().where('twitter').ne(null).exec(function(err, docs) {
         if (err) res.send(err);
 
-        res.json(_.uniq(docs));
+        var handles = docs.map(function(doc) {
+        	return doc.twitter;
+        });
+
+        res.json(_.uniq(handles));
     });
 });
 
