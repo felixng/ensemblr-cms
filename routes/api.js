@@ -2,7 +2,7 @@ var keystone = require('keystone');
 var _ = require('lodash')
 var express = keystone.express;
 var router = express.Router();
-var ignoreHandles = ['E_N_O', 'enballet'];
+var ignoreHandles = ['E_N_O', 'enballet', 'The_Globe'];
 
 // var Production = require('../models/Production');
 var Production = keystone.list('Production');
@@ -23,7 +23,7 @@ router.route('/productions/twitters').get(function(req, res) {
 
         var uniqueHandles = _.uniq(handles)
         ignoreHandles.map(function(doc) {
-        	uniqueHandles = _.pull(handles, doc);	
+        	uniqueHandles = _.pull(uniqueHandles, doc);	
         });
 
         res.json(uniqueHandles);
