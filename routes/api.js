@@ -18,10 +18,15 @@ router.route('/productions/twitters').get(function(req, res) {
         if (err) res.send(err);
 
         var handles = docs.map(function(doc) {
-        	return doc.twitter;
+        	return {
+        		id: doc._id,
+        		handle: doc.twitter,
+        	}
         });
 
-        var uniqueHandles = _.uniq(handles)
+        var uniqueHandles = _.uniqBy(handles, function(item){
+        	return item.handle;
+        })
         ignoreHandles.map(function(doc) {
         	uniqueHandles = _.pull(uniqueHandles, doc);	
         });
