@@ -14,7 +14,7 @@ router.route('/productions').get(function(req, res) {
 });
 
 router.route('/productions/twitters').get(function(req, res) {
-    Production.model.find().where('twitter').ne(null).exec(function(err, docs) {
+    Production.model.find().where('twitter').ne(null).ne('').exec(function(err, docs) {
         if (err) res.send(err);
 
         var handles = docs.map(function(doc) {
