@@ -19,13 +19,16 @@ Production.add({
 	genre: { type: String },
 	showTime: { type: String },
 	duration: { type: String, },
-	previewFrom: { type: Date, },
-	openingNight: { type: Date, },
+	previewFrom: { type: Types.Date, },
+	openingNight: { type: Types.Date, },
+	bookingUntil: { type: Types.Date, },
+	closing: { type: Types.Date, },
 	twitter: { type: String, width: 'small' },
+	overrideTwitter: { type: Boolean, default: false, width: 'small' },
 	facebook: { type: String, width: 'small' },
-	confirmedClosing: { type: Boolean, width: 'small', index: true },
 	createdAt: { type: Date, default: Date.now },
 	lastModified: { type: Date, default: Date.now },
+	groupBookingAvailable: { type: Boolean, default: false, width: 'small' },
 });
 
 // Production.schema.pre('save', function (next) {
