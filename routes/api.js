@@ -24,6 +24,7 @@ router.route('/productions/twitters').get(function(req, res) {
         	return {
         		id: doc._id,
         		handle: doc.twitter,
+                name: doc.name
         	}
         });
 
