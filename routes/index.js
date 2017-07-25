@@ -38,6 +38,11 @@ exports = module.exports = function (app) {
 	// Views
 	app.get('/', routes.views.index);
 	app.get('/gallery', routes.views.gallery);
+	app.use(function(req, res, next) {
+	  res.header("Access-Control-Allow-Origin", "*");
+	  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	  next();
+	});
 	app.use('/api', api.router);
 	app.all('/contact', routes.views.contact);
 
